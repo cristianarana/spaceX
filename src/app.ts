@@ -17,9 +17,9 @@ app.get('/', (req, res) => {
     res.send('Bienvenido a la API SpaceX');
   });
 
-app.use("/launches", launchesRouter);
-app.use("/rockets", rocketsRouter);
-app.use("/flights", flightsRouter);
+app.use("/api/launches", launchesRouter);
+app.use("/api/rockets", rocketsRouter);
+app.use("/api/flights", flightsRouter);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
