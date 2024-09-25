@@ -8,20 +8,12 @@
     ],
     "routes": [
       {
-        "src": "/api/launches",
-        "dest": "/dist/app.js"
-      },
-      {
-        "src": "/api/rockets",
-        "dest": "/dist/app.js"
-      },
-      {
-        "src": "/api/flights",
-        "dest": "/dist/app.js"
+        "src": "/api/(.*)",
+        "dest": "dist/app.js"
       },
       {
         "src": "/(.*)",
-        "dest": "/dist/app.js"
+        "dest": "dist/app.js"
       }
-    ]
+    ]   
   }
