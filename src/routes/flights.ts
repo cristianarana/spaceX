@@ -23,16 +23,9 @@ const router = Router();
  *             schema:
  *               $ref: '#/components/schemas/Flight'
  */
-router.get("/:ids", async (req, res) => {
-    const ids = req.params.ids.split(",");
-    try{
-        const flights = await getFlights(ids);
-        res.json(flights);
-    }catch(error){
-        res
-        .status(500)
-        .json({ error: `Failed to fetch launch with id ${req.params.ids}` });
-    }
+router.get("/", async (req, res) => {
+  const flights = await getFlights();
+  res.json(flights);
 });
 
 export default router;

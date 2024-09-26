@@ -2,17 +2,12 @@ import { apiClient } from "./spacex.service";
 import {Flight} from "../interfaces/flight.interface";
 
 
-export const getFlights = async (ids: string[]): Promise<Flight[]> => {
-  try {
+export const getFlights = async (): Promise<Flight[]> => {
     const response = await apiClient.get("/launches");
     const allLaunches = response.data;
 
-    const filteredLaunches = allLaunches.filter((launch: any) =>
-      ids.includes(launch.flight_number.toString())
-    );
-
     const flights: Flight[] = await Promise.all(
-      filteredLaunches.map(async (launch: any) => {
+      allLaunches.map(async (launch: any) => {
         const launch_rocket = await apiClient.get(
           `/rockets/${launch.rocket.rocket_id}`
         );
@@ -35,8 +30,4 @@ export const getFlights = async (ids: string[]): Promise<Flight[]> => {
       })
     );
     return flights;
-  } catch (error) {
-    console.error("Error fetching flights:", error);
-    throw new Error("Failed to fetch flights");
-  }
 };
